@@ -7,11 +7,9 @@ const db = require("./db");
 const collection = "todo";
 const app = express();
 
-
-
+// Routes
+app.use("/users", require("./users/route"));
 var commonRouter = require("./common/route");
-
-
 
 // schema used for data validation for our todo document
 const schema = Joi.object().keys({
@@ -21,20 +19,19 @@ const schema = Joi.object().keys({
 // parses json data sent to us by the user 
 app.use(bodyParser.json());
 
+// view engine setup
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 app.use('/common', commonRouter);
 
-
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.get('/common',(req,res)=>{
+    res.sendFile(path.join(__dirname,'common.ejs'));
+});
 
 // serve static html file to user
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'index.html'));
-});
-app.get('/common',(req,res)=>{
-    res.sendFile(path.join(__dirname,'common.ejs'));
 });
 
 // read

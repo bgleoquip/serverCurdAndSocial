@@ -19,12 +19,12 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // common route
 // app.route('/common/search').post(commonController.getAllItems);
-app.route('/common').post(commonController.getAllItems)
-app.route('/common/add').post(commonController.addAnItem)
-app.route('/common/delete')
+app.route('/').post(commonController.getAllItems)
+app.route('/add').post(commonController.addAnItem)
+app.route('/delete')
     .post(commonController.removeAnItem)
 // .get(notesController.getNotes);
-app.route('/common/update')
+app.route('/update')
     .post(commonController.updateAnItem)
 
 

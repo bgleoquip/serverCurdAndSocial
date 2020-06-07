@@ -30,12 +30,13 @@ require clientInput: {
 
 
 // read 
-function getAllItems(req, res) {
-    console.log(req);
+async function getAllItems (req, res) {
+    // console.log(req);
     var clientInput = req.body.options;
     var aggregateArray = getAggregationArray(req);
     var collection = clientInput.collection;
-    connection(collection).aggregate(aggregateArray).toArray((err, documents) => {
+    console.log(collection);
+    await connection(collection).aggregate(aggregateArray).toArray((err, documents) => {
         if (err)
             console.log(err);
         else {

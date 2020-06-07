@@ -46,4 +46,4 @@ const getDB = ()=>{
 const connection = (collection) => {
     return getDB().collection(collection)
 }
-module.exports = {getDB,connect,getPrimaryKey};
+module.exports = {connection, getDB,connect,getPrimaryKey};
